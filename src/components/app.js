@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './../../style/style.css';
 
 class App extends Component {
   constructor(props) {
@@ -8,7 +9,7 @@ class App extends Component {
 		name: 'CoolWorld'
 	}	
   }
-  
+
   changeHandler(event) {
 	this.setState({
 		name: event.target.value
@@ -18,7 +19,8 @@ class App extends Component {
   render() {
 	return (
 	  <div>
-		<b>{this.state.name}</b><hr />
+		<div className="header">{this.state.name}</div>
+		<hr />
 		<input onChange={(event) => {
 				this.setState({
 					name: event.target.value
