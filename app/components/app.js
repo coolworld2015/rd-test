@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './../../style/style.css';
+import './../css/style.css';
 
-import ListItem from './item';
+import ListItem from './listItem';
 
 class App extends Component {
 	constructor(props) {
