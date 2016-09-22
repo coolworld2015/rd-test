@@ -5,7 +5,7 @@ import {Router, hashHistory} from 'react-router';
 
 import routes from './routes';
 
-require('./index.html');
+import './index.html';
 import './css/style.css';
 
 //ReactDOM.render(<App />, document.getElementById('container'));
