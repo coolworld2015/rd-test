@@ -1,7 +1,7 @@
 import 'babel-polyfill';
 import React from 'react';
-import { render } from 'react-dom';
-import { Router, browserHistory } from 'react-router';
+import {render} from 'react-dom';
+import {Router, browserHistory} from 'react-router';
 
 import routes from './routes';
 require('./index.html');
@@ -11,6 +11,6 @@ require('./index.html');
 
 //ReactDOM.render(<App />, document.getElementById('container'));
 render(
-    <Router history={browserHistory} routes={routes} />,
-	document.getElementById('app') 
+    <Router history={browserHistory} routes={routes}/>,
+    document.getElementById('app')
 );
