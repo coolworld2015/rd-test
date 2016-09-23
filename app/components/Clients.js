@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
-import './../css/style.css';
+import ListItem from './ListItem';
 
-import ListItem from './listItem';
-
-class App extends Component {
+class Clients extends Component {
     constructor(props) {
         super(props);
 
@@ -78,4 +76,4 @@ class App extends Component {
     }
 }
 
-module.exports = App; 
+module.exports = Clients;

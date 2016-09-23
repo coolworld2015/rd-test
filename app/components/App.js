@@ -7,9 +7,11 @@ class App extends React.Component {
         return (
 
             <div className="container-fluid">
-                <Link to="/about" className="btn btn-primary btn-lg">Learn more</Link>
-                {" | "}
                 <Link to="/home" className="btn btn-primary btn-lg">Home</Link>
+                {" | "}
+                <Link to="/about" className="btn btn-primary btn-lg">About</Link>
+                {" | "}
+                <Link to="/clients" className="btn btn-primary btn-lg">Clients</Link>
                 {this.props.children}
             </div>
         );
