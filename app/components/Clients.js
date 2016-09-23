@@ -8,10 +8,19 @@ class Clients extends Component {
         this.state = {
             name: 'CoolWorld',
             clients: []
-        }
-    }
+        };
 
-    componentDidMount() {
+        this.sort = (a, b) => {
+            var nameA = a.name.toLowerCase(), nameB = b.name.toLowerCase();
+            if (nameA < nameB) {
+                return -1
+            }
+            if (nameA > nameB) {
+                return 1
+            }
+            return 0;
+        };
+
         this.getClients();
     }
 
@@ -24,28 +33,11 @@ class Clients extends Component {
                     resultsCount: responseData.length
                 });
             })
-            .catch((error)=> {
+            .catch(()=> {
                 this.setState({
                     serverError: true
                 });
             })
-    }
-
-    sort(a, b) {
-        var nameA = a.name.toLowerCase(), nameB = b.name.toLowerCase();
-        if (nameA < nameB) {
-            return -1
-        }
-        if (nameA > nameB) {
-            return 1
-        }
-        return 0;
-    }
-
-    changeHandler(event) {
-        this.setState({
-            name: event.target.value
-        })
     }
 
     showClients() {
@@ -76,4 +68,4 @@ class Clients extends Component {
     }
 }
 
-module.exports = Clients;
+export default Clients;
