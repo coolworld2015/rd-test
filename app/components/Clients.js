@@ -62,26 +62,20 @@ class Clients extends Component {
 		});
 	}
 	
-	setInputValue(name) {
-		this.setState({
-		  inputValue: 'xxx'
-		});
-	}
-	
     render() {
         return (
             <div>
-                <div onClick={this.setInputValue.bind(this)}
-				className="header">{this.state.name}</div>
+                <div className="header">{this.state.name}</div>
                 <hr />
  			
 				<hr />
 				
-                <input type="text" ref="myTextInput"
+                <input type="text"
 					value={this.state.inputValue}
 					onChange={(event) => {
                     this.setState({
-                        name: event.target.value
+                        name: event.target.value,
+						inputValue: event.target.value
                     })
                 }}/>
                 <hr />
