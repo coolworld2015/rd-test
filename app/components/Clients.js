@@ -23,7 +23,7 @@ class Clients extends Component {
 
         this.getClients();
     }
-
+ 
     getClients() {
         fetch('http://ui-warehouse.herokuapp.com/api/clients/get')
             .then((response)=> response.json())
@@ -41,17 +41,45 @@ class Clients extends Component {
     }
 
     showClients() {
-        return this.state.clients.map(function (item) {
-            return <ListItem id={item.id} name={item.name} key={item.id}/>
+        return this.state.clients.map((item) => {
+            return(
+				<ListItem 
+					id = {item.id} 
+					name = {item.name} 
+					key = {item.id} 
+					item = {item}
+					clickHandle={this.clickHandle.bind(this)} />
+			)
         })
     }
 
+	clickHandle(name) {
+		console.log(name);
+ 
+		this.setState({
+		  inputValue: name,
+		  name: name
+		});
+	}
+	
+	setInputValue(name) {
+		this.setState({
+		  inputValue: 'xxx'
+		});
+	}
+	
     render() {
         return (
             <div>
-                <div className="header">{this.state.name}</div>
+                <div onClick={this.setInputValue.bind(this)}
+				className="header">{this.state.name}</div>
                 <hr />
-                <input onChange={(event) => {
+ 			
+				<hr />
+				
+                <input type="text" ref="myTextInput"
+					value={this.state.inputValue}
+					onChange={(event) => {
                     this.setState({
                         name: event.target.value
                     })
