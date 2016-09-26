@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import ListItem from './ListItem';
+import {hashHistory} from 'react-router';
 
 class Clients extends Component {
     constructor(props) {
@@ -52,13 +53,15 @@ class Clients extends Component {
         })
     }
 
-    clickHandle(name) {
-        console.log(name);
+    clickHandle(item) {
+        console.log(item.id);
 
         this.setState({
-            inputValue: name,
-            name: name
+            inputValue: item.name,
+            name: item.name
         });
+
+        hashHistory.push("/client-details/" + item.id + "/" + item.name);
     }
 
     clickOnHeader() {

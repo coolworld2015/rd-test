@@ -8,7 +8,7 @@ class ListItem extends Component {
     }
 
     clickOnItem() {
-        this.props.clickHandle(this.props.item.name);
+        this.props.clickHandle(this.props.item);
     }
 
     render() {
