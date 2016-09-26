@@ -62,7 +62,7 @@ class Clients extends Component {
             name: item.name
         });
 
-        //hashHistory.push("/client-details/" + item.id + "/" + item.name);
+        hashHistory.push("/client-details/" + item.id + "/" + item.name);
     }
 
     clickOnHeader() {
