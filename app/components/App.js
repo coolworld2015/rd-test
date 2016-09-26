@@ -1,9 +1,7 @@
-// This component handles the App template used on every page.
-import React, {PropTypes} from 'react';
-import {Link} from 'react-router';
+import React, {Component} from 'react';
 import Header from './Header';
 
-class App extends React.Component {
+class App extends Component {
     render() {
         return (
             <div>

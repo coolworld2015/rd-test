@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ListItem from './ListItem';
 import {hashHistory} from 'react-router';
+import Input from './Input';
 
 class Clients extends Component {
     constructor(props) {
@@ -82,12 +83,14 @@ class Clients extends Component {
             <div>
                 <div className="header" onClick={this.clickOnHeader.bind(this)}>{this.state.name}</div>
                 <hr />
+                <Input
+                    name="inputTest"
 
+                    value="test"/>
                 <hr />
 
                 <input type="text"
-
-                    ref="inputValue"
+                       ref="inputValue"
                        onChange={(event) => {
                            this.setState({
                                name: event.target.value,
