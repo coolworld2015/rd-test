@@ -6,15 +6,15 @@ class ListItem extends Component {
 
         this.state = {}
     }
-	
-	clickOnItem() {
-		this.props.clickHandle(this.props.name);
-	}
-	
+
+    clickOnItem() {
+        this.props.clickHandle(this.props.item.name);
+    }
+
     render() {
         return (
             <div onClick={this.clickOnItem.bind(this)}>
-                <h4>{this.props.id} - {this.props.name}</h4>
+                <h4>{this.props.item.id} - {this.props.item.name}</h4>
                 <hr/>
             </div>
         );
