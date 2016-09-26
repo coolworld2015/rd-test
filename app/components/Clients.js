@@ -30,6 +30,7 @@ class Clients extends Component {
             .then((responseData)=> {
                 this.setState({
                     clients: responseData.sort(this.sort),
+                    filteredClients: responseData.sort(this.sort),
                     resultsCount: responseData.length
                 });
             })
@@ -60,10 +61,22 @@ class Clients extends Component {
         });
     }
 
+    clickOnHeader() {
+        var searchText = '2';
+
+        var arr = [].concat(this.state.filteredClients);
+        var items = arr.filter((el) => el.name.indexOf(searchText) >= 0);
+
+        this.setState({
+            clients: items,
+            resultsCount: items.length
+        })
+    }
+
     render() {
         return (
             <div>
-                <div className="header">{this.state.name}</div>
+                <div className="header" onClick={this.clickOnHeader.bind(this)}>{this.state.name}</div>
                 <hr />
 
                 <hr />
