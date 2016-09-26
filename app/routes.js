@@ -7,6 +7,7 @@ import Clients from './components/Clients';
 
 export default (
     <Route path="/" component={App}>
+        <IndexRoute component={HomePage} />
         <Route path="about" component={AboutPage}/>
         <Route path="home" component={HomePage}/>
         <Route path="clients" component={Clients}/>
