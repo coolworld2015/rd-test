@@ -6,41 +6,79 @@ import './index.html';
 import './css/style.css';
 
 import App from './redux/App';
+import Sidebar from './redux/Sidebar';
+
+const addDeck = (name) => ({type: 'ADD_DECK', data: name});
+const showAddDeck = () => ({type: 'SHOW_ADD_DECK'});
+const hideAddDeck = () => ({type: 'HIDE_ADD_DECK'});
 
 const cards = (state, action) => {
     switch (action.type) {
         case 'ADD_CARD':
+            let newDeck = {name: action.name, id: +new Date};
+            return state.concat([newDeck]);
+
+        default: return state || [];
+    }
+};
+
+const decks = (state, action) => {
+    switch (action.type) {
+        case 'ADD_DECK':
             let newCard = Object.assign({}, action.data, {
                 score: 1,
                 id: +new Date
             });
-
             return state.concat([newCard]);
 
-        default:
-            return state || [];
+        default: return state || [];
+    }
+};
+
+const addingDeck = (state, action) => {
+    switch (action.type) {
+        case 'SHOW_ADD_DECK': return true;
+        case 'HIDE_ADD_DECK': return false;
+        default: return !!state;
     }
 };
 
 const store = Redux.createStore(Redux.combineReducers({
-    cards
+    cards,
+    decks,
+    addingDeck
 }));
+
+function run() {
+   let state = store.getState();
+   ReactDOM.render(
+       <Sidebar decks={state.decks} addingDeck={state.addingDeck}/>, document.getElementById('app')
+   );
+}
+
+run();
+
+store.subscribe(run);
 
 store.subscribe(() => {
     console.log(store.getState());
 });
 
-store.dispatch({
-    type: 'ADD_CARD',
-    data: {
-        front: 'front',
-        back: 'back'
-    }
-});
+store.dispatch(addDeck({name:'xxx'}));
+store.dispatch(showAddDeck());
+//store.dispatch(hideAddDeck());
 
-store.dispatch({
-    type: 'ADD_CARD',
-    data: {}
-});
+// store.dispatch({
+//     type: 'ADD_CARD',
+//     data: {
+//         front: 'front',
+//         back: 'back'
+//     }
+// });
+//
+// store.dispatch({
+//     type: 'ADD_CARD',
+//     data: {}
+// });
 
-ReactDOM.render(<App />, document.getElementById('app'));
+//ReactDOM.render(<App />, document.getElementById('app'));

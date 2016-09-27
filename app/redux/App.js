@@ -1,9 +1,10 @@
 import React from 'react';
+import Sidebar from './Sidebar';
 
 const App = (props) => {
     return (
         <div>
-            <h1>Hello Redux !!!</h1>
+            <Sidebar decks={[{name:"test"}]} addingDeck="true"/>
         </div>
     )
 };
