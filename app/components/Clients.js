@@ -56,13 +56,13 @@ class Clients extends Component {
 
     clickHandle(item) {
         this.refs.inputValue.value = item.name;
+        this.refs.inputTest.state.value = item.name;
+
         this.setState({
             name: item.name
         });
 
-        this.refs.inputTest.state.value = item.name;
-
-        //hashHistory.push("/client-details/" + item.id + "/" + item.name);
+        hashHistory.push("/client-details/" + item.id + "/" + item.name);
     }
 
     clickOnHeader() {

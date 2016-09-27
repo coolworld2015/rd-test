@@ -2,39 +2,40 @@ var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-	entry: './app/index.js',
-	output: {
-		path: 'build',
-		filename: 'bundle.js'
-	},
-	devServer: {
-		inline: true,
-		contentBase: './build',
-		port: 8000
-	},  
-	resolve: {
+    entry: './app/index.js',
+    //entry: './app/redux.js',
+    output: {
+        path: 'build',
+        filename: 'bundle.js'
+    },
+    devServer: {
+        inline: true,
+        contentBase: './build',
+        port: 8000
+    },
+    resolve: {
         modulesDirectories: ['node_modules']
     },
-	module: {
-		loaders: [
-			{
-				exclude: /(node_modules)/,
-				loader: 'babel',
-				query: {
-				presets: ['react', 'es2015']
-				}
-			},
-			{
+    module: {
+        loaders: [
+            {
+                exclude: /(node_modules)/,
+                loader: 'babel',
+                query: {
+                    presets: ['react', 'es2015']
+                }
+            },
+            {
                 test: /\.css$/,
                 loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
             },
-			{ 
-				test: /\.html$/, 
-				loader: 'file-loader?name=[name].[ext]' 
-			}
-		]
-	},
+            {
+                test: /\.html$/,
+                loader: 'file-loader?name=[name].[ext]'
+            }
+        ]
+    },
     plugins: [
         new ExtractTextPlugin('style.css')
-    ]	
+    ]
 };
