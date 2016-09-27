@@ -55,14 +55,10 @@ class Clients extends Component {
     }
 
     clickHandle(item) {
-        console.log(item.id);
-
         this.refs.inputValue.value = item.name;
-
         this.setState({
             name: item.name
         });
-
         hashHistory.push("/client-details/" + item.id + "/" + item.name);
     }
 
@@ -85,8 +81,12 @@ class Clients extends Component {
                 <hr />
                 <Input
                     name="inputTest"
-
-                    value="test"/>
+                    onChange={() => {
+                        this.setState({
+                            inputValue1: event.target.value
+                        })
+                    }}
+                    value={this.state.inputValue1}/>
                 <hr />
 
                 <input type="text"
