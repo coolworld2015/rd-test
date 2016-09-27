@@ -8,23 +8,28 @@ import './css/style.css';
 import App from './redux/App';
 import Sidebar from './redux/Sidebar';
 
-const addDeck = (name) => ({type: 'ADD_DECK', data: name});
+const addDeck = (name) => ({type: 'ADD_DECK', name: name, description: 'xxx'});
 const showAddDeck = () => ({type: 'SHOW_ADD_DECK'});
 const hideAddDeck = () => ({type: 'HIDE_ADD_DECK'});
 
-const cards = (state, action) => {
+const decks = (state, action) => {
+    console.log(action.name);
     switch (action.type) {
-        case 'ADD_CARD':
-            let newDeck = {name: action.name, id: +new Date};
+        case 'ADD_DECK':
+            let newDeck = {
+                id: +new Date,
+                name: action.name,
+                description: action.description
+            };
             return state.concat([newDeck]);
 
         default: return state || [];
     }
 };
 
-const decks = (state, action) => {
+const cards = (state, action) => {
     switch (action.type) {
-        case 'ADD_DECK':
+        case 'ADD_CARD':
             let newCard = Object.assign({}, action.data, {
                 score: 1,
                 id: +new Date
@@ -60,13 +65,18 @@ run();
 
 store.subscribe(run);
 
+window.show = () => store.dispatch(showAddDeck());
+window.hide = () =>  store.dispatch(hideAddDeck());
+window.addDeck = (name) =>  store.dispatch(addDeck(name));
+
 store.subscribe(() => {
     console.log(store.getState());
 });
 
-store.dispatch(addDeck({name:'xxx'}));
+store.dispatch(addDeck('xxx'));
 store.dispatch(showAddDeck());
-//store.dispatch(hideAddDeck());
+store.dispatch(hideAddDeck());
+store.dispatch(addDeck('aaa'));
 
 // store.dispatch({
 //     type: 'ADD_CARD',
