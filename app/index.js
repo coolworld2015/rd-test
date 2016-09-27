@@ -1,17 +1,23 @@
 import 'babel-polyfill';
 import React from 'react';
-import {render} from 'react-dom';
+import ReactDOM, {render} from 'react-dom';
 import {Router, hashHistory} from 'react-router';
 import routes from './routes';
 import './index.html';
 import './css/style.css';
 
-//ReactDOM.render(<App />, document.getElementById('container')); //TODO: Without Router
+// render(                                                       //TODO: Router
+//     <Router history={hashHistory} routes={routes}/>,
+//     document.getElementById('app')
+// );
 
-render(
-    <Router history={hashHistory} routes={routes}/>,
-    document.getElementById('app')
-);
+const App = (props) => {
+    return (
+        <div>
+            <h1>Hello Redux !!!</h1>
+        </div>
+    )
+};
 
 const cards = (state, action) => {                              //TODO: Added REDUX
     switch (action.type) {
@@ -29,7 +35,7 @@ const cards = (state, action) => {                              //TODO: Added RE
 };
 
 const store = Redux.createStore(Redux.combineReducers({
-    cards: cards
+    cards
 }));
 
 store.subscribe(() => {
@@ -48,3 +54,5 @@ store.dispatch({
     type: 'ADD_CARD',
     data: {}
 });
+
+ReactDOM.render(<App />, document.getElementById('app'));       //TODO: ReactDOM
