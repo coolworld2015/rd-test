@@ -3,14 +3,20 @@ import React, {Component} from 'react';
 class Sidebar extends Component {
     constructor(props) {
         super(props);
-
-        console.log(this.props.decks)
     }
-
-    render() {
+	
+	toggleHandler() {
+		if (!this.refs.add) {
+			this.props.showAddDeck();
+		} else {
+			this.props.hideAddDeck();
+		}	
+	}
+    
+	render() {
         return (
             <div>
-                <h1>All Decks</h1>
+                <h1 onClick={this.toggleHandler.bind(this)}>All Decks</h1>
                 <ul>
                     {this.props.decks.map((item, i) =>
                         <li key={i}> {item.name} </li>

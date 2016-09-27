@@ -13,7 +13,6 @@ const showAddDeck = () => ({type: 'SHOW_ADD_DECK'});
 const hideAddDeck = () => ({type: 'HIDE_ADD_DECK'});
 
 const decks = (state, action) => {
-    console.log(action.name);
     switch (action.type) {
         case 'ADD_DECK':
             let newDeck = {
@@ -57,7 +56,13 @@ const store = Redux.createStore(Redux.combineReducers({
 function run() {
    let state = store.getState();
    ReactDOM.render(
-       <Sidebar decks={state.decks} addingDeck={state.addingDeck}/>, document.getElementById('app')
+       <Sidebar 
+			decks={state.decks} 
+			addingDeck={state.addingDeck}
+			showAddDeck={() => store.dispatch(showAddDeck())}			
+			hideAddDeck={() => store.dispatch(hideAddDeck())}
+		/>, 
+	document.getElementById('app')
    );
 }
 
