@@ -55,6 +55,8 @@ class Clients extends Component {
     }
 
     clickHandle(item) {
+        console.log(this.refs.inputTest.value);
+
         this.refs.inputValue.value = item.name;
         this.setState({
             name: item.name
@@ -74,6 +76,12 @@ class Clients extends Component {
         })
     }
 
+    inputChange(event) {
+        this.setState({
+            inputTest: event.target.value
+        })
+    }
+
     render() {
         return (
             <div>
@@ -81,12 +89,8 @@ class Clients extends Component {
                 <hr />
                 <Input
                     name="inputTest"
-                    onChange={() => {
-                        this.setState({
-                            inputValue1: event.target.value
-                        })
-                    }}
-                    value={this.state.inputValue1}/>
+                    onChange={this.inputChange}
+                    value={this.state.inputTest}/>
                 <hr />
 
                 <input type="text"

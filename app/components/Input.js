@@ -13,7 +13,7 @@ class Input extends Component {
                        className="className"
                        placeholder={this.props.placeholder}
                        ref={this.props.name}
-                       onChange={() => this.props.onChange()}
+                       onChange={this.props.onChange.bind(this)}
                        value={this.props.value}/>
             </div>
         );
