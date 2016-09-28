@@ -2,7 +2,14 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {addDeck, showAddDeck, hideAddDeck} from './actions';
 
-const mapStateToProps = ({decks, addingDeck}) => ({
+// const mapStateToProps = (state) => {  //TODO: Old style
+//     return {
+//         decks: state.decks,
+//         addingDeck: state.addingDeck
+//     }
+// };
+
+const mapStateToProps = ({decks, addingDeck}) => ({ //TODO: ES2015 style
     decks,
     addingDeck
 });
