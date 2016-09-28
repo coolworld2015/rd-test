@@ -13,11 +13,17 @@ import * as reducers from './redux/reducers';
 reducers.routing = routerReducer;
 
 import App from './redux/App';
+import VisibleCards from './redux/VisibleCards';
 
 const store = createStore(combineReducers(reducers));
 const history = syncHistoryWithStore(hashHistory, store);
 
-const routes = (<Router history={history}><Route path="/" component={App}/></Router>);
+const routes = (
+    <Router history={history}>
+        <Route path="/" component={App}/>
+        <Route path="/deck/:deckId" component={VisibleCards}/>
+    </Router>
+);
 
     function run() {
     ReactDOM.render((
