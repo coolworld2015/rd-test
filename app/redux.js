@@ -59,7 +59,8 @@ function run() {
        <Sidebar 
 			decks={state.decks} 
 			addingDeck={state.addingDeck}
-			showAddDeck={() => store.dispatch(showAddDeck())}			
+            addDeck={(name) => store.dispatch(addDeck(name))}
+            showAddDeck={() => store.dispatch(showAddDeck())}
 			hideAddDeck={() => store.dispatch(hideAddDeck())}
 		/>, 
 	document.getElementById('app')
