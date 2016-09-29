@@ -1,11 +1,31 @@
-import React from 'react';
+import React, {Component} from 'react';
+import App from './App';
 
-const Cards = () => {
-    return (
-        <div>
-            Deck here
-        </div>
-    );
-};
+class VisibleCards extends Component {
+    constructor(props) {
+        super(props);
 
-export default Cards;
+        this.state = {};
+
+        console.log(this.props.routeParams);
+    }
+
+    render() {
+        return (
+            <div>
+                <div style={{float: 'left', margin: 100+'px'}}>
+                    <App />
+                </div>
+                <div style={{
+                    float: 'right',
+                    //borderStyle: 'solid',
+                    margin: 100+'px'
+                }}>
+                    Deck ID - {this.props.routeParams.deckId}
+                </div>
+            </div>
+        );
+    }
+}
+
+export default VisibleCards;

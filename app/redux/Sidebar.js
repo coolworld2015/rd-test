@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {addDeck, showAddDeck, hideAddDeck} from './actions';
+import {Link} from 'react-router';
 
 // const mapStateToProps = (state) => {  //TODO: Old style
 //     return {
@@ -45,7 +46,9 @@ class Sidebar extends Component {
                 <h1 onClick={this.toggleHandler.bind(this)}>All Decks</h1>
                 <ul>
                     {this.props.decks.map((item, i) =>
-                        <li key={i}> {item.name} </li>
+                        <Link key={item.id} to={`/deck/${item.id}`}>
+                            <li key={item.id}> {item.name}</li>
+                        </Link>
                     )}
                 </ul>
                 {this.props.addingDeck && <input ref="add" onKeyPress={this.enterHandler.bind(this)}/>}
