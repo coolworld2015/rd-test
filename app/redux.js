@@ -1,41 +1,100 @@
+import 'babel-polyfill';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
 import './index.html';
 import './css/style.css';
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux';
-import {createStore, combineReducers} from 'redux';
-
-import {Router, Route, hashHistory} from 'react-router';
-import {syncHistoryWithStore, routerReducer} from 'react-router-redux';
-
-import * as reducers from './redux/reducers';
-reducers.routing = routerReducer;
-
 import App from './redux/App';
-import VisibleCards from './redux/VisibleCards';
+import Sidebar from './redux/Sidebar';
 
-const store = createStore(combineReducers(reducers));
-const history = syncHistoryWithStore(hashHistory, store);
+const addDeck = (name) => ({type: 'ADD_DECK', name: name, description: 'xxx'});
+const showAddDeck = () => ({type: 'SHOW_ADD_DECK'});
+const hideAddDeck = () => ({type: 'HIDE_ADD_DECK'});
 
-const routes = (
-    <Router history={history}>
-        <Route path="/" component={App}/>
-        <Route path="/deck/:deckId" component={VisibleCards}/>
-    </Router>
-);
+const decks = (state, action) => {
+    switch (action.type) {
+        case 'ADD_DECK':
+            let newDeck = {
+                id: +new Date,
+                name: action.name,
+                description: action.description
+            };
+            return state.concat([newDeck]);
 
-    function run() {
-    ReactDOM.render((
-        <Provider store={store}>
-            {routes}
-        </Provider>), document.getElementById('app')
+        default: return state || [];
+    }
+};
+
+const cards = (state, action) => {
+    switch (action.type) {
+        case 'ADD_CARD':
+            let newCard = Object.assign({}, action.data, {
+                score: 1,
+                id: +new Date
+            });
+            return state.concat([newCard]);
+
+        default: return state || [];
+    }
+};
+
+const addingDeck = (state, action) => {
+    switch (action.type) {
+        case 'SHOW_ADD_DECK': return true;
+        case 'HIDE_ADD_DECK': return false;
+        default: return !!state;
+    }
+};
+
+const store = Redux.createStore(Redux.combineReducers({
+    cards,
+    decks,
+    addingDeck
+}));
+
+function run() {
+    let state = store.getState();
+    ReactDOM.render(
+        <Sidebar
+            decks={state.decks}
+            addingDeck={state.addingDeck}
+            addDeck={(name) => store.dispatch(addDeck(name))}
+            showAddDeck={() => store.dispatch(showAddDeck())}
+            hideAddDeck={() => store.dispatch(hideAddDeck())}
+        />,
+        document.getElementById('app')
     );
 }
 
 run();
+
 store.subscribe(run);
+
+window.show = () => store.dispatch(showAddDeck());
+window.hide = () =>  store.dispatch(hideAddDeck());
+window.addDeck = (name) =>  store.dispatch(addDeck(name));
 
 store.subscribe(() => {
     console.log(store.getState());
 });
+
+store.dispatch(addDeck('xxx'));
+store.dispatch(showAddDeck());
+store.dispatch(hideAddDeck());
+store.dispatch(addDeck('aaa'));
+
+// store.dispatch({
+//     type: 'ADD_CARD',
+//     data: {
+//         front: 'front',
+//         back: 'back'
+//     }
+// });
+//
+// store.dispatch({
+//     type: 'ADD_CARD',
+//     data: {}
+// });
+
+//ReactDOM.render(<App />, document.getElementById('app'));
