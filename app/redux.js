@@ -1,11 +1,10 @@
-import 'babel-polyfill';
-import React from 'react';
-import ReactDOM from 'react-dom';
-
 import './index.html';
 import './css/style.css';
 
-import App from './redux/App';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import * as Redux from 'redux';
+
 import Sidebar from './redux/Sidebar';
 
 const addDeck = (name) => ({type: 'ADD_DECK', name: name, description: 'xxx'});
@@ -68,7 +67,6 @@ function run() {
 }
 
 run();
-
 store.subscribe(run);
 
 window.show = () => store.dispatch(showAddDeck());
