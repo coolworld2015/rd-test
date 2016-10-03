@@ -2,8 +2,8 @@ var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-    //entry: './app/index.js',
-    entry: './app/redux.js',
+    entry: './app/index.js',
+    //entry: './app/redux.js',
     //entry: './app/redux-router.js',
     output: {
         path: 'build',
