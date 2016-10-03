@@ -6,6 +6,8 @@ class Login extends Component {
 
         this.state = {
             showProgress: false,
+            username: '1',
+            password: '1'
         }
     }
 
@@ -51,27 +53,20 @@ class Login extends Component {
                     badCredentials: true
                 });
             })
-            .finally(()=> {
-                this.setState({
-                    showProgress: false
-                });
-            });
+    }
+
+    onLoginPressed() {
+        this.props.onLogin();
     }
 
     render() {
         var errorCtrl;
 
-        if (!this.state.success && this.state.badCredentials) {
+        if (this.state.badCredentials) {
             errorCtrl = <div>
                 That username and password combination did not work
             </div>;
         }
-        //
-        // if (!this.state.success && this.state.unknownError) {
-        //     errorCtrl = <Text style={styles.error}>
-        //         We experienced an unexpected issue
-        //     </Text>;
-        // }
 
         return (
             <div>
@@ -84,52 +79,7 @@ class Login extends Component {
                 </div>
                 {errorCtrl}
             </div>
-
-            // <ScrollView>
-            //     <View style={styles.container}>
-            //         <Image style={styles.logo}
-            //                source={require('../../../logo.jpg')}
-            //         />
-            //         <Text style={styles.heading}>RN-Base</Text>
-            //         <TextInput
-            //             onChangeText={(text)=> this.setState({
-            //                 username: text,
-            //                 badCredentials: false
-            //             })}
-            //             style={styles.loginInput}
-            //             placeholder="Login">
-            //         </TextInput>
-            //
-            //         <TextInput
-            //             onChangeText={(text)=> this.setState({
-            //                 password: text,
-            //                 badCredentials: false
-            //             })}
-            //             style={styles.loginInput}
-            //             placeholder="Password" secureTextEntry={true}>
-            //         </TextInput>
-            //
-            //         <TouchableHighlight
-            //             onPress={this.onLoginPressed.bind(this)}
-            //             //onPress={()=> this.getUser()}
-            //             style={styles.button}>
-            //             <Text style={styles.buttonText}>Log in</Text>
-            //         </TouchableHighlight>
-            //
-            //         {errorCtrl}
-            //
-            //         <ActivityIndicator
-            //             animating={this.state.showProgress}
-            //             size="large"
-            //             style={styles.loader}
-            //         />
-            //     </View>
-            // </ScrollView>
         )
-    }
-
-    onLoginPressed() {
-        this.props.onLogin();
     }
 }
 
