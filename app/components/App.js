@@ -22,7 +22,10 @@ class App extends Component {
     render() {
         if (this.state.isLoggedIn) {
             return (
-                <Header />
+                <div>
+                    <Header />
+                    {this.props.children}
+                </div>
             )
         } else {
             return (
