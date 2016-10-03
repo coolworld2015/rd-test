@@ -40,7 +40,7 @@ class Login extends Component {
                         badCredentials: false
                     });
 
-                    this.props.onLogin().bind(this);
+                    this.props.onLogin();
 
                 } else {
                     this.setState({
