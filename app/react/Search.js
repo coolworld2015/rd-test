@@ -46,7 +46,12 @@ class Search extends Component {
                     resultsCount: appConfig.search.items.length,
 					showProgress: false
                 });
-
+				
+				if (responseData.length == 0) {
+					this.setState({
+						serverError: true
+					});			
+				} 
             })
             .catch((error)=> {
                 this.setState({
@@ -64,45 +69,7 @@ class Search extends Component {
 			invalidValue: false
         });
 	}
-	
-    findByPhone() {
-		this.setState({
-            showProgress: true
-        });
-		
-		var webUrl;
-		if (this.state.type == 'Search by phone') {
-			webUrl = 'api/items/findByPhone/'
-		} else {
-			webUrl = 'api/items/findByName/'
-		}
-		
-		fetch(appConfig.url + webUrl + this.state.name, {
-            method: 'get',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
-            .then((response)=> response.json())
-            .then((responseData)=> {
-				appConfig.search.items = responseData.sort(this.sort);
-                this.setState({
-                    items: (responseData.sort(this.sort)).slice(0, 20),
-                    filteredItems: responseData.sort(this.sort),
-                    resultsCount: appConfig.search.items.length,
-					showProgress: false
-                });
-
-            })
-            .catch((error)=> {
-                this.setState({
-                    serverError: true,
-					showProgress: false
-                });
-            })
-    }
-	
+ 
     render() {
         var showResult, errorCtrl, validCtrl, loading;
 		
@@ -120,7 +87,9 @@ class Search extends Component {
 
         if (this.state.serverError) {
             errorCtrl = <div className="valid">
+				<br/>
 				Something went wrong.
+				<br/>
 			</div>;
         }
 
