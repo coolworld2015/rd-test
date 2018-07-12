@@ -46,7 +46,7 @@ const addingDeck = (state, action) => {
     }
 };
 
-const store = Redux.createStore(Redux.combineReducers({
+window.store = Redux.createStore(Redux.combineReducers({
     cards,
     decks,
     addingDeck

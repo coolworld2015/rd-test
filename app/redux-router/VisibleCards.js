@@ -13,10 +13,11 @@ class VisibleCards extends Component {
     render() {
         return (
             <div>
-                <div style={{float: 'left', margin: 100+'px'}}>
+                <div style={{    borderStyle: 'double', float: 'left', margin: 100+'px'}}>
                     <App />
                 </div>
                 <div style={{
+					    borderStyle: 'double',
                     float: 'right',
                     //borderStyle: 'solid',
                     margin: 100+'px'
