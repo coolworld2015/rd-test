@@ -20,7 +20,9 @@ class Search extends Component {
 		}
 
         this.setState({
-            showProgress: true
+            showProgress: true,
+			serverError: false,
+			items: []
         });
 		
 		var webUrl;
@@ -74,7 +76,7 @@ class Search extends Component {
     render() {
         var showResult, errorCtrl, validCtrl, loading;
 		
-        if (this.state.items.length>0) {
+        if (this.state.items.length > 0) {
             showResult = <div className="loading" style={{
 				textAlign: 'center',
 				top: 200,
@@ -102,8 +104,14 @@ class Search extends Component {
         }
 				
         if (this.state.showProgress) {
-            loading = <div className="loading">
-                <span>Loading...</span>
+            loading = <div className="loading" style={{
+				textAlign: 'center',
+				top: 200,
+				position: 'static',
+				fontSize: '30px',
+				fonWeight: 'bold'
+			}}>
+                Loading...
             </div>;
         }
 		
@@ -132,18 +140,26 @@ class Search extends Component {
 						<input type="text" 
 							className="input"
 							ref="username"
+							
 							onChange={(event) => {
 								this.setState({
 									name: event.target.value,
-									invalidValue: false
+									invalidValue: false,
+									serverError: false
 								})
 							}}
+							
+							onKeyPress={(event) => {
+								if (event.key === 'Enter') {		  
+									this.goSearch();
+								}
+							}}
+							
 							placeholder="Search"/>
 					</div>
 				</div>
 				
 				{errorCtrl}
-				{loading}
 				
 				<div>
 					<br/>
@@ -158,6 +174,7 @@ class Search extends Component {
 					</button>
 				</div>		
 				
+				{loading}
 				{showResult}
 				
 				</center>				
