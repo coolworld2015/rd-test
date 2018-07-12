@@ -66,7 +66,8 @@ class Search extends Component {
 		this.setState({
             name: '',
 			items: [],
-			invalidValue: false
+			invalidValue: false,
+			serverError: false
         });
 	}
  
@@ -88,14 +89,14 @@ class Search extends Component {
         if (this.state.serverError) {
             errorCtrl = <div className="valid">
 				<br/>
-				Something went wrong.
+					Something went wrong.
 				<br/>
 			</div>;
         }
 
         if (this.state.invalidValue) {
             validCtrl = <div className="valid">
-				Value required - please provide.
+					Value required - please provide.
 				<br/><br/>
 			</div>;
         }
