@@ -10,6 +10,7 @@ import Sidebar from './redux/Sidebar';
 const addDeck = (name, description) => ({type: 'ADD_DECK', name, description});
 const showAddDeck = () => ({type: 'SHOW_ADD_DECK'});
 const hideAddDeck = () => ({type: 'HIDE_ADD_DECK'});
+const deleteDeck = (id) => ({type: 'DEL_DECK', id});
 
 const decks = (state, action) => {
     switch (action.type) {
@@ -21,7 +22,10 @@ const decks = (state, action) => {
                 description: action.description
             };
             return state.concat([newDeck]);
-
+			
+        case 'DEL_DECK':
+			console.log('DEL_DECK ' + action.id)
+            return state;
         default: return state || [];
     }
 };
@@ -60,6 +64,7 @@ function run() {
             decks={state.decks}
             addingDeck={state.addingDeck}
             addDeck={(name, description) => store.dispatch(addDeck(name, description))}
+            delDeck={(id) => store.dispatch(deleteDeck(id))}
             showAddDeck={() => store.dispatch(showAddDeck())}
             hideAddDeck={() => store.dispatch(hideAddDeck())}
         />,

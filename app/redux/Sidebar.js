@@ -18,6 +18,10 @@ class Sidebar extends Component {
         this.props.addDeck(this.refs.add.value, this.refs.add.value);
         this.props.hideAddDeck();
     }
+	
+    clickHandler(id) {
+        this.props.delDeck(id);
+    }
 
     render() {
         return (
@@ -28,7 +32,7 @@ class Sidebar extends Component {
                 <h1 onClick={this.toggleHandler.bind(this)}>All Decks</h1>
                 <ul>
                     {this.props.decks.map((item, i) =>
-                        <li key={i}> {item.name} </li>
+                        <li key={i} onClick={this.clickHandler.bind(this, item.id)}> {item.name} </li>
                     )}
                 </ul>
                 {this.props.addingDeck && <input ref="add" onKeyPress={this.enterHandler.bind(this)}/>}
