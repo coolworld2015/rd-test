@@ -7,13 +7,14 @@ import * as Redux from 'redux';
 
 import Sidebar from './redux/Sidebar';
 
-const addDeck = (name) => ({type: 'ADD_DECK', name: name, description: 'xxx'});
+const addDeck = (name, description) => ({type: 'ADD_DECK', name, description});
 const showAddDeck = () => ({type: 'SHOW_ADD_DECK'});
 const hideAddDeck = () => ({type: 'HIDE_ADD_DECK'});
 
 const decks = (state, action) => {
     switch (action.type) {
         case 'ADD_DECK':
+			console.log(action)
             let newDeck = {
                 id: +new Date,
                 name: action.name,
@@ -58,7 +59,7 @@ function run() {
         <Sidebar
             decks={state.decks}
             addingDeck={state.addingDeck}
-            addDeck={(name) => store.dispatch(addDeck(name))}
+            addDeck={(name, description) => store.dispatch(addDeck(name, description))}
             showAddDeck={() => store.dispatch(showAddDeck())}
             hideAddDeck={() => store.dispatch(hideAddDeck())}
         />,
@@ -77,10 +78,10 @@ store.subscribe(() => {
     console.log(store.getState());
 });
 
-store.dispatch(addDeck('xxx'));
+store.dispatch(addDeck('xxx', 'cool'));
 store.dispatch(showAddDeck());
 store.dispatch(hideAddDeck());
-store.dispatch(addDeck('aaa'));
+store.dispatch(addDeck('aaa', 'test'));
 
 // store.dispatch({
 //     type: 'ADD_CARD',

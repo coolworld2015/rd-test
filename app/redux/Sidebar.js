@@ -15,13 +15,16 @@ class Sidebar extends Component {
 
     enterHandler(e) {
         if (e.which !== 13) return;
-        this.props.addDeck(this.refs.add.value);
+        this.props.addDeck(this.refs.add.value, this.refs.add.value);
         this.props.hideAddDeck();
     }
 
     render() {
         return (
-            <div>
+            <div style={{
+				backgroundColor: 'white',
+				textAlign: 'center'
+			}}>
                 <h1 onClick={this.toggleHandler.bind(this)}>All Decks</h1>
                 <ul>
                     {this.props.decks.map((item, i) =>
