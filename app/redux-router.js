@@ -15,6 +15,8 @@ reducers.routing = routerReducer;
 import App from './redux-router/App';
 import VisibleCards from './redux-router/VisibleCards';
 
+import {addDeck, showAddDeck, hideAddDeck} from './redux-router/actions';
+
 const store = createStore(combineReducers(reducers));
 const history = syncHistoryWithStore(hashHistory, store);
 
@@ -39,3 +41,8 @@ store.subscribe(run);
 store.subscribe(() => {
     console.log(store.getState());
 });
+
+store.dispatch(addDeck('first', 'cool'));
+store.dispatch(addDeck('second', 'cool'));
+
+window.store = store;
