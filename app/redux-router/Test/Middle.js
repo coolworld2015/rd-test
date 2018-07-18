@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {addDeck, showAddDeck, hideAddDeck} from '../actions';
-import {Link} from 'react-router';
+import {addDeck, showAddDeck, hideAddDeck} from './actions';
 
 const mapStateToProps = ({decks, addingDeck}) => ({
     decks,

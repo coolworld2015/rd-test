@@ -9,13 +9,13 @@ import {createStore, combineReducers} from 'redux';
 import {Router, Route, hashHistory} from 'react-router';
 import {syncHistoryWithStore, routerReducer} from 'react-router-redux';
 
-import * as reducers from './redux-router/reducers';
+import * as reducers from './redux-router/Test/reducers';
 reducers.routing = routerReducer;
 
 import App from './redux-router/App';
 import VisibleCards from './redux-router/VisibleCards';
 
-import {addDeck, showAddDeck, hideAddDeck} from './redux-router/actions';
+import {addDeck, showAddDeck, hideAddDeck} from './redux-router/Test/actions';
 
 const store = createStore(combineReducers(reducers));
 const history = syncHistoryWithStore(hashHistory, store);
@@ -44,5 +44,7 @@ store.subscribe(() => {
 
 store.dispatch(addDeck('first', 'cool'));
 store.dispatch(addDeck('second', 'cool'));
+
+//store.dispatch(({type: 'ADD_DECK', name: 'cool', description: 'xxx'}));
 
 window.store = store;

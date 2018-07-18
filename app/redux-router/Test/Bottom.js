@@ -1,11 +1,18 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
-const Bottom = () => {
+const mapStateToProps = ({decks}) => ({
+    decks
+});
+
+const Bottom = (props) => {
     return (
         <div>
-			Bottom
+			Bottom - {props.decks.length}
 		</div> 
     )
 };
 
-export default Bottom;
+export default connect(
+	mapStateToProps
+)(Bottom);

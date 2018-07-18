@@ -1,11 +1,24 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { addDeck } from './actions';
 
-const Top = () => {
+const mapDispatchToProps = (dispatch) => ({
+    addDeck: (name) => dispatch(addDeck(name))
+});
+
+const clickHandler = (props) => {
+        props.addDeck('xxxx')
+    }
+	
+const Top = (props) => {
     return (
-        <div>
+        <div onClick={clickHandler.bind(null, props)}>
 			Top
 		</div> 
     )
 };
 
-export default Top;
+export default connect(
+	null,
+	mapDispatchToProps
+)(Top);
