@@ -1,10 +1,10 @@
 import React from 'react';
-import Sidebar from './Sidebar';
+import Search from './Search';
 
 const App = () => {
     return (
         <div>
-            <Sidebar />
+            <Search />
         </div>
     )
 };
