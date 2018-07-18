@@ -116,7 +116,7 @@ class Search extends Component {
         }
 		
         return (
-			<div style={{backgroundColor: 'black', height: '800px'}}>				
+			<div style={{backgroundColor: 'black', height: '800px'}}>	
 				<center>		
                 <div className="header">
 					Search
