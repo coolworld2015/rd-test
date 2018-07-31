@@ -1,14 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-const mapStateToProps = ({decks}) => ({
-    decks
+const mapStateToProps = ({decks, items}) => ({
+    decks,
+	items
 });
 
 const Bottom = (props) => {
     return (
         <div>
-			Bottom - {props.decks.length}
+			Bottom - {props.items.data.length}
 		</div> 
     )
 };

@@ -9,7 +9,19 @@ const mapDispatchToProps = (dispatch) => ({
 
 const clickHandler = (state) => {
 	state.addDeck('xxxx');
-	state.addItems([]);
+	goSearch(state)
+	
+}
+
+const goSearch = (state) => {
+	fetch('http://ui-base.herokuapp.com/api/items/findByPhone/555555')
+		.then((response)=> response.json())
+		.then((responseData)=> {
+			state.addItems((responseData));
+		})
+		.catch((error)=> {
+			console.log(error);
+		})	
 }
 	
 const Top = (state) => {

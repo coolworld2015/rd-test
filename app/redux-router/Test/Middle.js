@@ -14,13 +14,14 @@ const mapDispatchToProps = (dispatch) => ({
 class Middle extends Component {
     constructor(props) {
         super(props);
+		console.dir(props)
     }	
 	
 	render() {
 		return (
 			<div>
 
-				{this.props.decks.map((item, i) =>
+				{this.props.items.data.map((item, i) =>
 					<div key={item.id}>
 						<span key={item.id}> {item.id} - {item.name}</span>
 					</div>

@@ -47,6 +47,6 @@ store.subscribe(() => {
 
 //store.dispatch(({type: 'ADD_DECK', name: 'cool', description: 'xxx'}));
 
-store.dispatch(({type: 'ADD_ITEMS', data: ['a1','a2','a3','a4','a5']}));
+//store.dispatch(({type: 'ADD_ITEMS', data: [{id:'a1'}]}));
 
 window.store = store;

@@ -15,9 +15,9 @@ export const decks = (state, action) => {
 export const items = (state, action) => {
     switch (action.type) {
         case 'ADD_ITEMS':
-            let newItems = Object.assign({}, action.data);
+            let newItems = Object.assign({}, {data: action.data});
             return newItems;
 
-        default: return state || {};
+        default: return state || {data: []};
     }
 };
