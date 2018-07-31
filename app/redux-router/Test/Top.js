@@ -14,10 +14,11 @@ const clickHandler = (state) => {
 }
 
 const goSearch = (state) => {
+	state.addItems([]);
 	fetch('http://ui-base.herokuapp.com/api/items/findByPhone/555555')
 		.then((response)=> response.json())
 		.then((responseData)=> {
-			state.addItems((responseData));
+			state.addItems(responseData);
 		})
 		.catch((error)=> {
 			console.log(error);
