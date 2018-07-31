@@ -42,9 +42,11 @@ store.subscribe(() => {
     console.log(store.getState());
 });
 
-store.dispatch(addDeck('first', 'cool'));
-store.dispatch(addDeck('second', 'cool'));
+//store.dispatch(addDeck('first', 'cool'));
+//store.dispatch(addDeck('second', 'cool'));
 
 //store.dispatch(({type: 'ADD_DECK', name: 'cool', description: 'xxx'}));
+
+store.dispatch(({type: 'ADD_ITEMS', data: ['a1','a2','a3','a4','a5']}));
 
 window.store = store;

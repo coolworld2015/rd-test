@@ -1,16 +1,14 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {addDeck, showAddDeck, hideAddDeck} from './actions';
+import { addDec } from './actions';
 
-const mapStateToProps = ({decks, addingDeck}) => ({
+const mapStateToProps = ({decks, items}) => ({
     decks,
-    addingDeck
+    items
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    addDeck: (name) => dispatch(addDeck(name)),
-    showAddDeck: () => dispatch(showAddDeck()),
-    hideAddDeck: () => dispatch(hideAddDeck())
+    addDeck: (name) => dispatch(addDeck(name))
 });
 
 class Middle extends Component {

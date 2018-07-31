@@ -12,23 +12,12 @@ export const decks = (state, action) => {
     }
 };
 
-export const cards = (state, action) => {
+export const items = (state, action) => {
     switch (action.type) {
-        case 'ADD_CARD':
-            let newCard = Object.assign({}, action.data, {
-                score: 1,
-                id: +new Date
-            });
-            return state.concat([newCard]);
+        case 'ADD_ITEMS':
+            let newItems = Object.assign({}, action.data);
+            return newItems;
 
-        default: return state || [];
-    }
-};
-
-export const addingDeck = (state, action) => {
-    switch (action.type) {
-        case 'SHOW_ADD_DECK': return true;
-        case 'HIDE_ADD_DECK': return false;
-        default: return !!state;
+        default: return state || {};
     }
 };

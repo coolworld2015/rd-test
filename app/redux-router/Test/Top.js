@@ -1,18 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addDeck } from './actions';
+import { addDeck, addItems } from './actions';
 
 const mapDispatchToProps = (dispatch) => ({
-    addDeck: (name) => dispatch(addDeck(name))
+    addDeck: (name) => dispatch(addDeck(name)),
+	addItems: (data) => dispatch(addItems(data))
 });
 
-const clickHandler = (props) => {
-        props.addDeck('xxxx')
-    }
+const clickHandler = (state) => {
+	state.addDeck('xxxx');
+	state.addItems([]);
+}
 	
-const Top = (props) => {
+const Top = (state) => {
     return (
-        <div onClick={clickHandler.bind(null, props)}>
+        <div onClick={clickHandler.bind(null, state)}>
 			Top
 		</div> 
     )
