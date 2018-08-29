@@ -21,3 +21,14 @@ export const items = (state, action) => {
         default: return state || {data: []};
     }
 };
+
+export const loader = (state, action) => {
+    switch (action.type) {
+        case 'SHOW_LOADER':
+            return Object.assign({}, {show: true});
+		case 'HIDE_LOADER':
+            return Object.assign({}, {show: false});
+
+        default: return state || {show: false};
+    }
+};
