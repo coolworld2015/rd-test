@@ -35,7 +35,8 @@ const goSearch = (state) => {
 const Top = (state) => {
     return (
         <div onClick={clickHandler.bind(null, state)}>
-			Top - {state.loader.show.toString()}
+			Top 
+			{/*- {state.loader.show.toString()} */}
 		</div> 
     )
 };

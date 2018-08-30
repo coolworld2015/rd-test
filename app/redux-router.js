@@ -1,5 +1,6 @@
 import './index.html';
 import './css/style.css';
+import './img/loading.gif';
 
 import React from 'react';
 import ReactDOM from 'react-dom';

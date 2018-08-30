@@ -23,7 +23,7 @@ class Middle extends Component {
 		
 		if (this.props.loader.show) {
             loader = <div>
-				Loading...
+				<img src="./loading.gif"/>
             </div>;
         }
 		return (
