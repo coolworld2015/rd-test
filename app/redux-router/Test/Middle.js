@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { addDec } from './actions';
 
-const mapStateToProps = ({decks, items}) => ({
+const mapStateToProps = ({decks, items, loader}) => ({
     decks,
-    items
+    items,
+	loader
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -18,9 +19,16 @@ class Middle extends Component {
     }	
 	
 	render() {
+		let loader;
+		
+		if (this.props.loader.show) {
+            loader = <div>
+				Loading...
+            </div>;
+        }
 		return (
 			<div>
-
+				{loader}
 				{this.props.items.data.map((item, i) =>
 					<div key={item.id}>
 						<span key={item.id}> {item.id} - {item.name}</span>
