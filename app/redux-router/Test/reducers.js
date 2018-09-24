@@ -12,23 +12,22 @@ export const decks = (state, action) => {
     }
 };
 
-export const items = (state, action) => {
+export const items = (state = {data: []}, action) => {
     switch (action.type) {
-        case 'ADD_ITEMS':
-            let newItems = Object.assign({}, {data: action.data});
-            return newItems;
-
-        default: return state || {data: []};
+        case 'ADD_ITEMS': 
+            return { ...state, data: action.data };
+			
+        default: return state;
     }
 };
 
-export const loader = (state, action) => {
+export const loader = (state = {show: false}, action) => {
     switch (action.type) {
         case 'SHOW_LOADER':
-            return Object.assign({}, {show: true});
+            return { ...state, show: true };
 		case 'HIDE_LOADER':
-            return Object.assign({}, {show: false});
+            return { ...state, show: false };
 
-        default: return state || {show: false};
+        default: return state;
     }
 };
